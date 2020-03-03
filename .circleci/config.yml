@@ -17,14 +17,17 @@ jobs:
       - run: npm install
 
       - run:
-          name: Build Docker Image
-          command: docker build -t sz-app .
-
-      - run:
-          name: Push To Heroku
+          name: Authenticate To Heroku
           command: |
             docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
-            docker tag sz-app registry.heroku.com/$HEROKU_APP_NAME/web
+
+      - run:
+          name: Build Docker Image
+          command: docker build -t registry.heroku.com/$HEROKU_APP_NAME/web .
+
+      - run:
+          name: Push Docker Image
+          command: |
             docker push registry.heroku.com/$HEROKU_APP_NAME/web:latest
 
       - run:
