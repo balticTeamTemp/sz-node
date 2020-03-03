@@ -21,19 +21,11 @@ jobs:
           command: docker build -t sz-app .
 
       - run:
-          name: Login To Heroku CR
+          name: Push To Heroku
           command: |
             docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
             docker tag sz-app registry.heroku.com/$HEROKU_APP_NAME/web
             docker push registry.heroku.com/$HEROKU_APP_NAME/web:latest
-
-      - run:
-          name: Push Images
-          command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            docker login --username=$DOCKER_LOGIN --password=$DOCKER_PASSWORD
-            docker tag sz-app nordeatrener/$HEROKU_APP_NAME:$TAG
-            docker push nordeatrener/$HEROKU_APP_NAME:$TAG
 
       - run:
           name: Publish to Heroku

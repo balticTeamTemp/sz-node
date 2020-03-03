@@ -7,4 +7,4 @@ app.get('/hello', function (req, res) {
   return res.status(200).send("hello")
 })
 
-app.listen(8080)
+app.listen(process.env.PORT)
