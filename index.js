@@ -7,12 +7,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/hello', function (req, res) {
-  return res.status(200).send("hello")
+  return res.status(200).send('hello')
 })
 
 app
   .post('/webhook/inbound', (req, res) => {
-    const params = Object.assign(request.query, request.body)
+    const params = Object.assign(req.query, req.body)
     console.log(params)
     res.status(204).send()
   })
