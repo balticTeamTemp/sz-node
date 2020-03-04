@@ -10,12 +10,23 @@ app.get('/hello', function (req, res) {
   return res.status(200).send('hello')
 })
 
-app
-  .post('/webhook/inbound', (req, res) => {
-    const params = Object.assign(req.query, req.body)
-    console.log(params)
-    res.status(204).send()
-  })
+app.post('/webhook/inbound', (req, res) => {
+  const params = Object.assign(req.query, req.body)
+  console.log(params)
+  res.status(204).send()
+})
+
+app.post('/call/events', (req, res) => {
+  const params = Object.assign(req.query, req.body)
+  console.log(params)
+  res.status(204).send()
+})
+
+app.post('/call/answer', (req, res) => {
+  const params = Object.assign(req.query, req.body)
+  console.log(params)
+  res.status(204).send()
+})
 
 app.listen(process.env.PORT, () => {
   console.log('Starting app')
