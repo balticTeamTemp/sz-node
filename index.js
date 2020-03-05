@@ -28,6 +28,17 @@ app.post('/call/answer', (req, res) => {
   res.status(204).send()
 })
 
+app.get('/call/tts', function (req, res) {
+  console.log(req.query)
+  return res.status(304).send([
+    {
+      action: 'talk',
+      voiceName: 'Russell',
+      text: 'Thank you fusion operate'
+    }
+  ])
+})
+
 app.listen(process.env.PORT, () => {
-  console.log('Starting app')
+  console.log(`Starting app on port ${process.env.PORT}`)
 })
